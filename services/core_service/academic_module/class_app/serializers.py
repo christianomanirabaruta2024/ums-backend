@@ -1,19 +1,17 @@
 from rest_framework import serializers
 
-from services.core_service.academic_module.department_app.models import Department
-from services.core_service.academic_module.department_app.serializers import (
-    DepartmentSerializer,
-)
-
-from .models import Class
+from .models import Class, ClassGroup
 
 
 class ClassSerializer(serializers.ModelSerializer):
-    department = DepartmentSerializer(read_only=True)
-    department_id = serializers.PrimaryKeyRelatedField(
-        queryset=Department.objects.all(), source="department", write_only=True
-    )
-
     class Meta:
         model = Class
-        fields = ["id", "class_name", "department", "department_id", "class_group"]
+        fields = "__all__"
+
+
+class ClassGroupSerializer(serializers.ModelSerializer):
+    class_fk_detail = ClassSerializer(source="class_fk", read_only=True)
+
+    class Meta:
+        model = ClassGroup
+        fields = "__all__"

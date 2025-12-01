@@ -1,10 +1,14 @@
-# Create your views here.
-from core.views import BaseViewSet
+from rest_framework import viewsets
 
-from .models import Class
-from .serializers import ClassSerializer
+from .models import Class, ClassGroup
+from .serializers import ClassGroupSerializer, ClassSerializer
 
 
-class ClassViewSet(BaseViewSet):
+class ClassViewSet(viewsets.ModelViewSet):
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
+
+
+class ClassGroupViewSet(viewsets.ModelViewSet):
+    queryset = ClassGroup.objects.all()
+    serializer_class = ClassGroupSerializer

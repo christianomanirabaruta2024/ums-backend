@@ -1,6 +1,9 @@
 from rest_framework.routers import DefaultRouter
 
-from services.core_service.academic_module.class_app.views import ClassViewSet
+from services.core_service.academic_module.class_app.views import (
+    ClassGroupViewSet,
+    ClassViewSet,
+)
 from services.core_service.academic_module.course_app.views import CourseViewSet
 from services.core_service.academic_module.department_app.views import DepartmentViewSet
 from services.core_service.academic_module.faculty_app.views import (
@@ -20,6 +23,7 @@ from services.core_service.academic_module.university_app.views import (
 )
 
 router = DefaultRouter()
+router.register(r"class-groups", ClassGroupViewSet, basename="class-groups")
 router.register(r"typeformations", TypeFormationViewSet, basename="typeformations")
 router.register(r"faculties", FacultyViewSet, basename="faculties")
 router.register("academic-years", AcademicYearViewSet, basename="academic-year")
