@@ -1,10 +1,9 @@
-# Create your views here.
-from core.views import BaseViewSet
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Course
 from .serializers import CourseSerializer
 
 
-class CourseViewSet(BaseViewSet):
-    queryset = Course.objects.all()
+class CourseViewSet(ModelViewSet):
+    queryset = Course.objects.all().order_by("course_name")
     serializer_class = CourseSerializer
